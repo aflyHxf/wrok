@@ -1,0 +1,98 @@
+<div class="fk-records container-fluid">
+  <div class="fk-scrollable row">
+      <page-header title="'开户分析表'" back="false" dashboardpage="true" background="true" href="'#/dashboard'"></page-header>
+      <div class="col-md-12 bgWhite">
+        <table class="table table-striped">
+          <tr>
+            <td width="50%">
+                  <div class="qs-insideText">开始时间:</div>
+                  <div class="col-10 input-group-btn">
+                    <input type="text" id="startDate" class="form-control qs-inputText">
+                  </div>
+            </td>
+            <td width="50%">
+                 <div class="qs-insideText">结束时间:</div>
+                 <div class="input-group-btn">
+                  <input type="text" id="endDate" class="form-control qs-inputText">
+                 </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+                 <div class="qs-insideText">会员</div>
+                 <div class="w100p">
+                  <input type="text" class="form-control w100p qs-inputText" ng-model="partnerquicksearch.playerName">
+                 </div>
+            </td>
+
+          </tr>
+          <tr>
+            <td colspan="2">
+                <div class="qs-insideText">路径</div>
+                 <div class="w100p">
+                  <input type="text" class="form-control w100p qs-inputText" ng-model="partnerquicksearch.domain">
+                 </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <div class="qs-insideText">每页显示:</div>
+                 <div class="qs-inputText">
+                  <select class="form-control bgGray" ng-model="partnerquicksearch.pgLimit">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                  </select>
+                 </div>
+            </td>
+            <td>
+                <div class="fRight">
+                 <button class="text-right btn btn-primary" ng-click="partnerquicksearch.searchTransaction(true)">查询</button>
+                </div>
+            </td>
+          </tr>
+        </table>
+    </div>
+  </div>
+           <!-- topUpHistory -->
+           <div class="bgWhite qResult row mtop10">
+            <div>
+              <table class="table table-responsive">
+                <thead class="bgThead">
+                  <tr>
+                    <th>账号</th>
+                    <th>姓名</th>
+                    <!-- <th>合作伙伴</th> -->
+                    <!-- <th>推荐人</th> -->
+                    <!-- <th>信用</th> -->
+                    <th>存款笔数</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="userAnalysis in partnerquicksearch.registerUserAnalysis">
+                    <td>{{userAnalysis.playerId}}</td>
+                    <td>{{userAnalysis.realName}}</td>
+                    <td>{{userAnalysis.topUpTimes}}</td>
+                  </tr>
+                  <tr ng-if="partnerquicksearch.registerUserAnalysisStats.totalCount==0">
+                    <td colspan="4">暂无记录</td>
+                  </tr>
+                </tbody>
+              </table>
+              <nav aria-label="...">
+                <ul class="pagination pagination-lg pagin2">
+                  <li class="page-item" ng-if="partnerquicksearch.totalPg">
+                    <a class="page-link" ng-click="partnerquicksearch.tabtoPg('-1')">上一页</a>
+                  </li>
+                  <li class="page-item" data-current="{{n}}" ng-repeat="n in partnerquicksearch.totalPg">
+                    <a class="page-link" ng-click="partnerquicksearch.tabtoPg(n)">{{n}}</a>
+                  </li>
+                  <li class="page-item" ng-if="partnerquicksearch.totalPg">
+                    <a class="page-link" ng-click="partnerquicksearch.tabtoPg('+1')">下一页</a>
+                  </li>
+                  </ul>
+                </nav>
+              </div>
+          </div>
+           <!-- end of topUpHistory -->
+</div>

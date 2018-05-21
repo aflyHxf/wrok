@@ -1,0 +1,100 @@
+.fk-records{
+  background-color: #eeeeee;
+  /*padding: 0;*/
+  min-height:764px;
+}
+
+.recordTabs{
+    
+    width:auto;
+    background-color:white;
+    text-align:center;
+
+    padding-left: 0px;
+    margin-left: 0px;
+
+    padding-right: 0px;
+    margin-right: 0px;
+
+}
+
+.recordTabs li{
+    /*border-bottom:3px solid #CECECE;*/
+    display:inline-block;
+    padding:10px 5px 10px;
+    width:22%;
+    cursor:pointer;
+    z-index:1;
+    outline:none;
+}
+
+.bgBlue{
+    background-color:#1e8feb;
+    color:white;
+    font-weight: bold;
+}
+.uLine{
+    border-bottom:4px solid rgb(57, 179, 215);;
+    z-index:3;
+}
+.queryFields{
+    padding:2px;
+    margin-bottom:6px;
+}
+
+.submitButton{
+    min-height:40px;
+    width:100%;
+}
+
+.bgGray{
+    background-color:#EFEFEF !important;
+}
+
+.ptop12{
+    padding-top:12px;
+    padding-left:2px;
+    padding-right:2px;
+}
+.ptop20{
+    padding-top:20px;
+}
+.bgWhite{
+    background-color:white;
+    height:100%;
+}
+
+.qResult{
+    padding:0;
+}
+
+.p3{
+    padding:3px !important;
+}
+
+.qResult1{
+    padding:50px 50px 100px;
+    min-height:auto;
+    text-align:center;
+}
+
+.w83{
+    width:83px;
+}
+.w20p{
+    width:20%;
+}
+.w30p{
+    width:30%;
+}
+.w100p{
+    width:100%;
+}
+.mtop10{
+    margin-top:20px;
+}
+.bgThead{
+    background-color:#c9e5fb;
+    color:#3498f6;
+    font-size:small;
+}

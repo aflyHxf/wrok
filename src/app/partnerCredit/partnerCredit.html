@@ -1,0 +1,51 @@
+<div class="fk-account container-fluid">
+
+  <div class="row">
+    <div class="col-md-12" style="background-color: #ffffff">
+
+      <page-header title="'提款银行资料'" back="true" background="true"></page-header>
+
+      <div style="padding:20px 10px;" ng-if="!bank.userData.bankAccount" ng-model="bank.userData.bankAccount">
+        <div class="col-md-12" style="background-color: #ffffff">
+          <div class="form-group">
+            <div class="insideText">账户余额：</div>
+            <div class="col-10">
+              <input class="form-control inputText" ng-model="bank.editData.bankAccountName" type="text">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="insideText">转账金额：</div>
+            <div class="col-10">
+              <input class="form-control inputText" ng-model="bank.editData.bankAccount" type="text">
+            </div>
+          </div>
+          <div class="form-group p-credit-acc">
+            <div class="insideText">会员账号：</div>
+            <div class="col-10">
+              <input class="form-control inputText" ng-model="bank.editData.bankAccount" type="text">
+            </div>
+            <span class="btn btn-primary p-credit-smsCode" ng-click="">匹配</span>
+          </div>
+          <div class="userDt">
+            <div class="p20">
+            <div class="p-user-info">当前会员账号：</div>
+            <div class="p-user-info">真实姓名：</div>
+            <div class="p-user-info">邮箱：</div>
+            <div class="p-user-info">联系电话：</div>
+            </div>
+            <div class="text-center hint">请确认会员信息是否正确</div>
+          </div>
+
+        </div>
+        <div class="ptop20">
+        <button class="btn btn-primary w100" ng-click="bank.updatePlayerPayment()">立即申请</button>
+        </div>
+        <div class="commission-hint">首创【佣金转移功能】：若下线会员不方便进行存款代理
+了选择收取会员现金后，将佣金转移给会员进行游戏
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,142 @@
+<div class="row" style="margin: 0;">
+  <div class="fk-page-header col-md-12">
+    <a class="fk-btn-back" ng-show="vm.back" ng-href="{{vm.url}}">
+      <span class="btn-back-icon"></span>
+      <span class="btn-back-text">返回</span>
+    </a>
+    <a class="fk-btn-back" ng-show="vm.dashboardpage" ng-href="/#dashboard">
+      <span class="btn-back-icon"></span>
+      <span class="btn-back-text">首页</span>
+    </a>
+    <div class="dropdown" ng-show="vm.cs">
+      <a class="dropdown-toggle" data-toggle="dropdown">
+        <div class="fk-btn-cs">
+          <span class="btn-cs-icon"></span>
+          <span class="btn-cs-text">客服</span>
+        </div>
+      </a>
+      <ul class="cs-popup dropdown-menu top48">
+        <li ng-click="vm.clearSelctedCs(); vm.webcs = true; vm.openWebChat()"
+            ng-class="{'cs-popup-selcted':vm.webcs == true}">
+          <div class="cs-popup-icon ic-head-blue" ng-hide="vm.webcs"></div>
+          <div class="cs-popup-icon ic-head-white" ng-show="vm.webcs"></div>
+          <div class="cs-popup-txt">在线客服</div>
+        </li>
+        <li ng-click="vm.clearSelctedCs(); vm.qq = true" ng-class="{'cs-popup-selcted':vm.qq == true}">
+          <!--<a href="mqqwpa://im/chat?chat_type=crm&uin=4009951777&version=1&src_type=web">-->
+          <!--<a href="mqq:4009951777">-->
+          <a target="_blank"
+             href="{{vm.qqUrl1}}">
+            <div class="cs-popup-icon ic-qq-blue" ng-hide="vm.qq"></div>
+            <div class="cs-popup-icon ic-qq-white" ng-show="vm.qq"></div>
+          </a>
+          <a target="_blank"
+             href="{{vm.qqUrl1}}">
+            <div class="cs-popup-txt" style="font-size:0.9em">800805366</div>
+          </a>
+          <a target="_blank"
+               href="{{vm.qqUrl2}}">
+            <div class="cs-popup-txt" style="font-size:0.9em">800803663</div>
+          </a>
+        </li>
+        <li ng-click="vm.clearSelctedCs(); vm.phone = true; vm.requestCallBack()"
+            ng-class="{'cs-popup-selcted':vm.phone == true}">
+          <div class="cs-popup-icon ic-phone-blue" ng-hide="vm.phone"></div>
+          <div class="cs-popup-icon ic-phone-white" ng-show="vm.phone"></div>
+          <div class="cs-popup-txt">申请回电</div>
+        </li>
+        <li ng-click="vm.clearSelctedCs(); vm.qr = true" ng-class="{'cs-popup-selcted':vm.qr == true}">
+          <!--<a href="/assets/images/cspopup/qr.jpg" download>-->
+          <a href="#/wechatcs">
+            <div class="cs-popup-icon ic-qr"></div>
+            <div class="cs-popup-txt">微信客服</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="fk-page-title" ng-show="!vm.logo">{{vm.title}}</div>
+    <img class="fk-page-logo" ng-show="vm.logo" src="assets/images/logo.png"/>
+    <div class="fk-page-right-holder" ng-show="$root.loggedOn">
+      <img class="fk-page-mail" ng-show="$root.hasNewMail" src="assets/images/inbox.png"/>
+      <a class="fk-page-credit" ng-show="vm.credit && $root.loggedOn" href="#/accountcenter">
+        {{ $root.totalCredit || $root.validCredit+ $root.lockedCredit | number:2  }}
+      </a>
+      <div class="fk-page-logout" ng-click="vm.logoutNow()" ng-show="$root.loggedOn&&vm.logout">
+        <img height="15" src="assets/images/account/logout.png">
+        登出
+      </div>
+
+
+
+    </div>
+    <div class="fk-page-login" ng-show="!$root.loggedOn && vm.login">
+      <a href="#/register" ng-click="vm.registerClickCount()">注册</a> /
+      <a href="#/login" ng-click="vm.loginClickCount()">登录</a>
+
+    </div>
+    <div class="fk-page-login" ng-click="vm.logoutNow()" ng-show="vm.logoutpartner">
+      <img height="15" src="assets/images/account/logout.png">
+      登出
+    </div>
+
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="callbackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">免费热线回拨</h4>
+      </div>
+      <div class="modal-body">
+        <form class="fk-cb-form" name="callbackForm">
+          <div class="form-group" style="position: relative;">
+            <span class="ic-user"></span>
+            <input type="text" name="phoneNo" ng-model="vm.phoneNo" placeholder="请输入联系方式" class="form-control"
+                   required>
+            <div class="has-error" ng-messages="callbackForm.phoneNo.$error" ng-if="callbackForm.phoneNo.$touched">
+              <div ng-message="required">
+                <div class="popover fade top in" role="tooltip"
+                     style="top: -25px;left: 0px;display: block; color: #ff0000;">
+                  <div class="arrow" style="left: 50%;"></div>
+                  <h3 class="popover-title" style="display: none;"></h3>
+                  <div class="popover-content">请输入联系方式</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" style="position: relative;">
+            <span class="ic-locker"></span>
+            <input type="text" name="captcha" ng-model="vm.captcha" placeholder="请输入验证码" class="form-control"
+                   required>
+            <!--<img class="img-captcha" ng-src="data:image/jpeg;base64,{{signup.captcha}}" ng-click="signup.getCaptcha()">-->
+            <img class="captcha img-captcha"
+                 ng-src="{{vm.captchaUrl}}"
+                 ng-click="vm.getCaptcha();" style="position: absolute;top: 7px;right: 0;">
+            <div class="has-error" ng-messages="callbackForm.captcha.$error" ng-if="callbackForm.captcha.$touched">
+              <div ng-message="required">
+                <div class="popover fade top in" role="tooltip"
+                     style="top: -25px;left: 0px;display: block; color: #ff0000;">
+                  <div class="arrow" style="left: 50%;"></div>
+                  <h3 class="popover-title" style="display: none;"></h3>
+                  <div class="popover-content">请输入验证码</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <input type="submit" class="btn btn-primary y btn-lg" style="width: 49%;" value="取消回拨"
+                 data-dismiss="modal">
+          <input type="submit" class="btn btn-primary y btn-lg" style="width: 49%;" value="确认回拨"
+                 ng-click="vm.submitCallBack()">
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+      </div>
+    </div>
+  </div>
+</div>

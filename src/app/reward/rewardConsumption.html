@@ -1,0 +1,234 @@
+<div class="fk-rewardCons container-fluid">
+
+  <div class="fk-scrollable row">
+    <div class="fk-scrollable-content col-md-12">
+
+      <page-header background="true" back="true" cs="false" logo="true" credit="true" href="'#/reward'"></page-header>
+
+      <div class="col-md-12">
+        <img class="ls-rewardCons" src="/assets/images/reward/bannn2.jpg"/>
+      </div>
+
+      <div class="text-1">七日礼包</div>
+      <br><br>
+      <div class="rc-text2">【活动内容】</div>
+      <br>
+      <div class="text-3">当日存款金额在200元或以并且有效投注额在2000以上。</div>
+      <br><br>
+      <div>
+        <table class="table-1 qrTable" border>
+          <tr>
+              <th width="16%"></th>
+              <th width="16%">无名渔夫</th>
+              <th width="16%">实习船员</th>
+              <th width="16%">大副</th>
+              <th width="16%">船长</th>
+              <th width="16%">深海阎王</th>
+          </tr>
+          <tr>
+              <td>第1天</td>
+              <td>5</td>
+              <td>8</td>
+              <td>15</td>
+              <td>20</td>
+              <td>40</td>
+          </tr>
+          <tr>
+              <td>第2天</td>
+              <td>6</td>
+              <td>9</td>
+              <td>16</td>
+              <td>30</td>
+              <td>50</td>
+          </tr>
+          <tr>
+              <td>第3天</td>
+              <td>7</td>
+              <td>10</td>
+              <td>17</td>
+              <td>40</td>
+              <td>60</td>
+          </tr>
+          <tr>
+              <td>第4天</td>
+              <td>8</td>
+              <td>11</td>
+              <td>18</td>
+              <td>50</td>
+              <td>70</td>
+          </tr>
+          <tr>
+              <td>第5天</td>
+              <td>9</td>
+              <td>12</td>
+              <td>19</td>
+              <td>60</td>
+              <td>80</td>
+          </tr>
+          <tr>
+              <td>第6天</td>
+              <td>10</td>
+              <td>13</td>
+              <td>20</td>
+              <td>70</td>
+              <td>90</td>
+          </tr>
+          <tr>
+              <td>第7天</td>
+              <td>11</td>
+              <td>14</td>
+              <td>21</td>
+              <td>80</td>
+              <td>100</td>
+          </tr>
+        </table>
+      </div>
+      <div class="rc-text2">【活动对象】</div>
+      <br>
+      <div class="text-3">捕鱼皇所有玩家。</div>
+      <br><br>
+
+      <div class="rc-text2">【领取方式】</div>
+      <br>
+      <div class="text-3">新会员在提交存款信息后，在投注、提款之前，登录游戏账号点击【最新优惠】，选择【七日礼包】进行申请。</div>
+      <br><br>
+
+      <div class="rc-text2">【提款要求】</div>
+      <br>
+      <div class="text-4">玩家提款前，需达到优惠*8有效投注额，即可办理提款。</div>
+      <div class="text-4">举例：王小宝领取20元签到优惠，需达到20*8=160有效投注额即可办理提款。</div>
+      <br>
+
+      <div class="rc-text2">【注意事项】</div>
+      <br>
+      <div class="text-4"> 1.可累计一周内的登录天数，不需连续签到。</div>
+      <div class="text-4"> 2.存款和有效投注额的累积时间为，每日0点到次日0点。</div>
+      <div class="text-4"> 3.此优惠活动可与洗码优惠、充值特惠共享。</div>
+      <div class="text-4"> 4.若账户余额高于5元，则该笔存款的有效投注额会被累计到下一笔存款。</div>
+      <div class="text-4"> 5.本网站保留对活动进行修改、最终解释和终止的权力，而无需提前通知，并对于任何争议具有最终决定权。</div>
+      <div style="width:100%;padding:4px;margin-top:20px;">
+        <table class="table table-bordered signInfo" style="width:100%;">
+          <thead>
+            <th style="width:12%">第1天</th>
+            <th style="width:12%">第2天</th>
+            <th style="width:12%">第3天</th>
+            <th style="width:12%">第4天</th>
+            <th style="width:12%">第5天</th>
+            <th style="width:12%">第6天</th>
+            <th style="width:12%">第7天</th>
+          </thead>
+          <tr>
+            <td ng-repeat="listData in rewardconsumption.signInfo.list">{{ rewardconsumption.RewardStatus[listData.status] }}</td>
+          </tr>
+        </table>
+      </div>
+      <!--
+      <div class="rc-text2" style="width:100%">
+
+        <table class="table table-bordered" style="width:100%">
+          <tr>
+            <td style="width:40%">开始时间</td>
+            <td style="width:60%">{{rewardconsumption.signInfo.startTime || ''}}</td>
+          </tr>
+          <tr>
+            <td>结束时间</td>
+            <td>{{rewardconsumption.signInfo.endTime}}</td>
+          </tr>
+          <tr>
+            <td>所需存款</td>
+            <td>{{rewardconsumption.signInfo.deposit}}</td>
+          </tr>
+          <tr>
+            <td>所需投注</td>
+            <td>{{rewardconsumption.signInfo.effectiveBet}}</td>
+          </tr>
+        </table>
+
+        <table class="table table-bordered" style="width:100%">
+          <thead>
+            <th style="width:25%">第x天</th>
+            <th style="width:25%">奖励金额</th>
+            <th style="width:25%">请求次数</th>
+            <th style="width:25%">领取状态</th>
+          </thead>
+
+          <tr ng-repeat="listData in rewardconsumption.signInfo.list">
+            <td>{{ listData.step }}</td>
+            <td>{{ listData.bonus }}</td>
+            <td>{{ listData.requestedTimes }}</td>
+            <td>{{ rewardconsumption.RewardStatus[listData.status] }}</td>
+          </tr>
+        </table>
+      </div>-->
+
+
+      <!--<div class="text1">救援金</div>-->
+      <!--<table class="table-2 center">-->
+        <!--<tr>-->
+          <!--<th class="th-2">输值范围</th>-->
+          <!--<th class="th-2">救援金额度</th>-->
+        <!--</tr>-->
+        <!--<tr>-->
+          <!--<td class="td-2">100</td>-->
+          <!--<td class="td-2">5</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+          <!--<td class="td-2">500</td>-->
+          <!--<td class="td-2">28</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+          <!--<td class="td-2">1000</td>-->
+          <!--<td class="td-2">58</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+          <!--<td class="td-2">3000</td>-->
+          <!--<td class="td-2">188</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+          <!--<td class="td-2">6000</td>-->
+          <!--<td class="td-2">288</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+          <!--<td class="td-2">10000</td>-->
+          <!--<td class="td-2">588</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+          <!--<td class="td-2">30000</td>-->
+          <!--<td class="td-2">1588</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+          <!--<td class="td-2">50000</td>-->
+          <!--<td class="td-2">2888</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+          <!--<td class="td-2">100000</td>-->
+          <!--<td class="td-2">5888</td>-->
+        <!--</tr>-->
+      <!--</table>-->
+      <!--<br>-->
+      <!--<div class="rc-text2">【申请方式】</div>-->
+      <!--<div class="text2"> 每日派发的救援金皆为昨日0时 - 24时会员输值。</div>-->
+      <!--<div class="text3"> 捕鱼皇推出救援金自动派发功能，会员无需自助申请，系统将在每日中午12:00自动结算会员前一日产生的救援金，并于下午3:00前自动添加至会员账户。</div>-->
+      <!--<br><br>-->
+      <!--<div class="rc-text2">【活动说明】</div>-->
+      <!--<div class="text3"> 1.用户每天在捕鱼游戏中产生的输值范围，将获得输值范围赠送金额返还。</div>-->
+      <!--<div class="text3"> 2.救援金最低派发金额为5元，最高为5888元。</div>-->
+      <!--<br><br>-->
+      <!--<div class="rc-text2">【活动规则】</div>-->
+      <!--<div class="text3"> 1.本次优惠的对象是娱乐性质玩家，如发现会员为职业赌徒或只为寻求红利的玩家，捕鱼皇保留取消该玩家红利权利。</div>-->
+      <!--<div class="text3"> 2.会员参加任何捕鱼皇游戏都被视为认可并同意遵守这些规则以及本娱乐场准则规定。捕鱼皇保留对活动进行修改，最终解释和终止的权力，而无需提前通知，并对于任何争议具有最终决定权。</div>-->
+    <!--</div>-->
+      <div class="mbot20 mh200">
+        <div class="col-md-12" style="min-height:50px;">
+          <div class="col-md-1 col-xs-1"></div>
+          <div class="col-md-1 col-xs-1">
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="applyBtn" ng-click="rewardconsumption.applyRewardEvent()"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer-menu name="'promotion'"></footer-menu>
+</div>

@@ -1,0 +1,136 @@
+.fk-signup .col-md-12 {
+
+}
+
+.fk-signup-form {
+
+}
+
+.fk-signup-form .form-group {
+  position: relative;
+}
+
+.fk-signup-form .form-title {
+  margin: 15px 0 10px;
+  font-size: 16px;
+}
+
+.fk-signup-form input[type="text"], .fk-signup-form input[type="password"], .fk-signup-form input[type="email"] {
+  background-color: #dad6d7;
+  height: 46px;
+  padding-left: 112px;
+}
+
+.fk-signup .btn-primary {
+  margin-top: 30px !important;
+  margin-bottom: 100px !important;
+}
+
+.fk-signup .btn-get-captcha {
+  background-color: #1880d5;
+  color: #ffffff;
+  width: 100px;
+  text-align: center;
+  padding: 8px 10px;
+  border-radius: 100px;
+  position: absolute;
+  cursor: pointer;
+  font-size: 12px;
+  right: 2px;
+  top: -24px;
+}
+
+.fk-signup .img-captcha {
+  position: absolute;
+  right: 10px;
+  top: 9px;
+  cursor: pointer;
+}
+
+.fk-signup .ic-head {
+  background-image: url("/assets/images/signup/signupHead.png");
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+.fk-signup .ic-lock {
+  background-image: url("/assets/images/signup/signupLock.png");
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  margin-top: 7px;
+  margin-left: 10px;
+
+}
+
+.fk-signup .ic-game {
+  background-image: url("/assets/images/signup/signupGame.png");
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+.fk-signup .ic-mail {
+  background-image: url("/assets/images/signup/signupMail.png");
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+.fk-signup .ic-phone {
+  background-image: url("/assets/images/signup/signupPhone.png");
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+.fk-signup .ic-shield {
+  background-image: url("/assets/images/signup/signupShield.png");
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+.fk-signup label {
+  position: absolute;
+  top: 0;
+  margin-top: 14px;
+  margin-left: 50px;
+  text-align: justify;
+  width: 62px;
+}
+
+.fk-signup label:after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}

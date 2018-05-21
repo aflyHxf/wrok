@@ -1,0 +1,42 @@
+input[type=text] {
+}
+
+.insideText {
+  padding-top: 12px;
+  padding-left: 5px;
+  position: absolute;
+  width: 130px;
+  z-index: 2;
+  font-size: medium;
+}
+
+.inputText {
+  position: relative;
+  top: 0;
+  z-index: 1;
+  padding-left: 130px;
+  background-color: #CECECE;
+  height: 46px;
+  font-size: medium;
+  border: 1px solid #ccc;
+  -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+
+}
+
+.btop100 {
+  padding-top: 100px;
+}
+
+.bfont {
+  color: blue;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.bank-content{
+  padding:20px 10px;
+}

@@ -1,0 +1,83 @@
+.fk-transfer{
+    background-color:#CECECE;
+    min-height:764px;
+}
+.p0{
+    padding:0px;
+}
+.p20{
+    padding:20px;
+}
+.w50p{
+    width:50%;
+}
+.w100p{
+    width:100%;
+}
+.p5{
+    padding:5px;
+}
+.pBottom30{
+    padding-bottom:30px;
+}
+.amountBar{
+    font-size:larger;
+}
+.bgWhite{
+    background-color:white;
+}
+.mtop10{
+    margin-top:10px;
+}
+.mtop20{
+    margin-top:20px;
+}
+.mtop40{
+    margin-top:40px;
+}
+.gameTable{
+    padding:5px;
+    border-bottom:1px solid #CECECE;
+}
+
+.gameTable div{
+    padding:8px 0px 8px 0px;
+    font-size:small;
+
+}
+
+.gameTableHead{
+    padding:10px 0px 10px 0px;;
+    font-size:medium;
+    border-bottom:1px solid #CECECE;
+
+}
+.gameTableHead div{
+    text-align:center;
+}
+.mAll0{
+    margin-left:0px;
+    margin-right:0px;
+}
+.providerRadio{
+    outline:none !important;
+    margin:0px;
+}
+
+.pLeft3{
+    padding-left:3px;
+}
+.transfer-creditFont{
+    font-size:smaller;
+}
+.p4{
+    padding:6px;
+}
+.transfer-vmiddle{
+    vertical-align: middle;
+}
+
+
+.gameTable input[type="radio"]{
+    margin:0px !important;
+}

@@ -1,0 +1,263 @@
+.fk-body {
+  margin-top: 0px;
+  padding: 0;
+  background-color: #eeeeee;
+}
+
+.fk-game {
+  height: 300px;
+  background-color: #ffffff;
+  margin-bottom: 15px;
+  padding: 10px;
+  position: relative;
+
+}
+
+.fk-game-avatar {
+  width: 100%;
+  height: 220px;
+  box-sizing: border-box;
+  background-color: #000000;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 170px
+}
+
+.fk-game-play {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
+}
+
+.fk-game-real {
+  width: 100%;
+  display: inline;
+  color: #ffffff;
+  float: left;
+  text-align: center;
+  vertical-align: top;
+  /*border-right: 1px solid #111111;*/
+  height: 100%;
+  line-height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.fk-game-trial {
+  font-size: 16px;
+  opacity: 1;
+  cursor: pointer;
+  vertical-align: top;
+  text-align: center;
+  width: 50%;
+  display: inline;
+  color: #ffffff;
+  float: left;
+  line-height: 40px;
+}
+
+.fk-game-desc {
+  position: relative;
+  margin-top: 10px;
+}
+
+.fk-game-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 3px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 10px;
+  float: left;
+}
+
+.fk-game-text {
+  width: 80%;
+  display: inline-block;
+}
+
+.fk-game-name {
+  float: left;
+  font-weight: bold;
+  margin-left: 10px;
+  display: block;
+  width: 100%;
+}
+
+.fk-game-total-online {
+  float: left;
+  display: block;
+  margin-left: 10px;
+  width: 100%;
+
+}
+
+.fk-game-download {
+  float: right;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: #1e8feb !important;
+  border-color: #1e8feb !important;
+}
+
+.fk-btn-icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: #0f0f0f;
+  vertical-align: top;
+  margin-top: 15px;
+  margin-right: 5%;
+}
+
+.fk-btn-txt {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 20px;
+  color: #ffffff;
+}
+
+.fk-game1 .fk-game-avatar {
+  background-image: url("/assets/images/game1.jpg");
+  background-position: center;
+}
+
+.fk-game2 .fk-game-avatar {
+  background-image: url("/assets/images/game2.jpg");
+}
+
+.fk-game3 .fk-game-avatar {
+  background-image: url("/assets/images/game3.jpg");
+}
+
+.fk-game4 .fk-game-avatar {
+  background-image: url("/assets/images/game4.jpg");
+}
+
+.fk-game1 .fk-game-icon {
+  background-image: url("/assets/images/iconGame1.png");
+}
+
+.fk-game2 .fk-game-icon {
+  background-image: url("/assets/images/iconGame2.png");
+}
+
+.fk-game3 .fk-game-icon {
+  background-image: url("/assets/images/iconGame3.png");
+}
+
+.fk-game4 .fk-game-icon {
+  background-image: url("/assets/images/iconGame4.png");
+}
+
+.fk-ticker {
+  width: 100%;
+  color: #ffffff;
+  line-height: 30px;
+  background-color: #057fe4;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 100px;
+}
+
+.fk-ticker-title {
+  display: inline;
+  text-align: center;
+  float: left;
+  width: 30%;
+  font-size: 14px;
+}
+
+.fk-ticker-content {
+  font-size: 12px;
+  padding-top:5px;
+  text-align: center;
+  width: 70%;
+}
+
+.fk-ticker-icon {
+  background-image: url("/assets/images/dotdotdot.png");
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 8px;
+  vertical-align: top;
+}
+
+
+.marquee {
+  overflow: hidden;
+  text-align: left;
+}
+
+.marquee.marquee-speed-slow:before {
+  animation-duration:  40s;
+}
+.marquee.marquee-speed-custom:before {
+  animation-duration: inherit;
+}
+.marquee.marquee-speed-normal:before {
+  animation-duration: 15s;
+}
+.marquee.marquee-speed-fast:before {
+  animation-duration: 10s;
+}
+.marquee.marquee-speed-swift:before {
+  animation-duration: 5s;
+}
+
+@keyframes movement-smooth {
+  from {
+    transform: translateX(0%);
+    left: 100%;
+  }
+  to {
+    transform: translateX(-120%);
+    left: 0%;
+  }
+}
+.marquee.marquee-movement-smooth:before {
+  animation-name: movement-smooth;
+}
+
+.marquee.marquee-direction-left:before,
+.marquee.marquee-direction-normal:before {
+  animation-direction: normal;
+}
+.marquee.marquee-direction-alternate:before {
+  animation-direction: alternate;
+}
+.marquee.marquee-direction-right:before,
+.marquee.marquee-direction-reverse:before {
+  animation-direction: reverse;
+}
+.marquee:before {
+  content: attr(data-marquee);
+  white-space: nowrap;
+  position: relative;
+  transform: translateX(-50%);
+  display: inline-block;
+  left: 50%;
+  -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+
+}
+.marquee:before {
+  animation-duration: 10s;
+}
+.marquee:before {
+  animation-name: movement-smooth;
+}
+.marquee:before {
+  animation-direction: normal;
+}
+
+.fk-main {
+  background-color: white !important;
+}

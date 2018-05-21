@@ -1,0 +1,150 @@
+<div class="fk-account-center container-fluid">
+  <div class="fk-scrollable row">
+    <div class="fk-scrollable-content col-md-12">
+      <page-header background="true" back="true" title="'帐户中心'" cs="false" logo="false" credit="false" login="false" logout="true" href="'#/account'"></page-header>
+      <div class="ac-avatar" ng-click="ac.userPg()">
+        <div class="ac-avatar-icon" ng-style="{'background-image':'url('+ ac.photoClass+')'}">
+        </div>
+        <div class="ac-avatar-status">
+
+          <span class="ac-avatar-status-name">{{ac.playerName}} </span>
+          <span class="playerLevel">{{ac.playerLevel}} </span>
+          <span class="ac-avatar-status-credit">{{ ac.totalCredit || ac.validCredit+ac.lockedCredit|number : 2}}</span>
+        </div>
+        <a class="ac-avatar-link">
+          <div class="ac-avatar-link-text">基本资料</div>
+          <div class="ac-avatar-link-icon"></div>
+        </a>
+      </div>
+      <div class="ac-nav">
+        <ul>
+          <a href="#/cashInOut/cashIn">
+            <li class="ac-nav-item">充值</li>
+          </a>
+          <li class="ac-nav-divider"></li>
+          <a href="#/cashInOut/cashOut">
+            <li class="ac-nav-item">提款</li>
+          </a>
+          <li class="ac-nav-divider"></li>
+          <a href="#/transfer">
+            <li class="ac-nav-item">游戏转账</li>
+          </a>
+        </ul>
+      </div>
+      <div class="ac-credit-block">
+
+        <!-- game credit -->
+        <div class="col-md-12">
+          <div class="col-xs-12 col-md-12 ac-bgWhite ac-game-credit ac-game-div ">
+            <div class="ac-credit-header"></div>
+            <div class="wp20 mLeft6" style="display:inline-block">
+              <div class="ac-game-item ac-bline"><b>游戏大厅</b></div>
+              <div class="ac-game-item"><b>游戏余额</b></div>
+            </div>
+
+            <!-- <div class="col-xs-12 col-md-12 ac-bgWhite" ng-repeat="pr in ac.providerList"> -->
+            <div class="wp20 ac-bgWhite" style="display:inline-block" ng-repeat="pr in ac.providerList">
+              <div class="ac-game-item ac-bline">{{pr.nickname}}</div>
+              <div class="ac-game-item ac-blueFont"><b>{{pr.credit}}</b></div>
+            </div>
+            <!-- </div> -->
+          </div>
+
+        </div>
+
+
+        <!-- end of game credit -->
+      </div>
+      <div class="ac-reward">
+        <span class="ac-reward-title">提款解锁进度: </span><!--<span class="ac-reward-item">{{ac.reward.eventId.name}}.</span>-->
+        <div class="ac-reward-progress">
+          <span class="ac-reward-progress-title">有效投注:</span>
+          <span class="ac-reward-progress-bar-bg">
+            <span class="ac-reward-progress-bar-fg" ng-style="{width:(ac.freeGroupDetail.currentAmount/ac.freeGroupDetail.requiredUnlockAmount*200).toFixed(2)}"></span>
+            <span class="ac-reward-progress-bar-credit" ng-style="{left: -48+ (ac.freeGroupDetail.currentAmount/ac.freeGroupDetail.requiredUnlockAmount*200)}">{{ac.freeGroupDetail.currentAmount|number : 2}}
+              <span class="ac-reward-progress-bar-tri"></span></span>
+            <span class="ac-reward-progress-bar-start">0</span>
+            <span class="ac-reward-progress-bar-percent">{{ac.freeGroupDetail.currentAmount/ac.freeGroupDetail.requiredUnlockAmount*100 | number: 2}}%</span>
+            <span class="ac-reward-progress-bar-end">{{ac.freeGroupDetail.requiredUnlockAmount}}</span>
+          </span>
+        </div>
+        <div class="ac-credit">
+          <!--<span class="ac-credit-title ac-credit-light">优惠额度: </span>-->
+          <!--<span class="ac-credit-val ac-credit-light">{{ac.lockedCredit|number : 2}}</span>-->
+          <span class="ac-credit-title ac-credit-highlight">账户总额: </span>
+          <span class="ac-credit-value ac-credit-highlight">{{ac.totalCredit|number : 2}}</span>
+        </div>
+      </div>
+      <div class="ac-cashout">
+        <span class="ac-reward-title">提款申请: </span>
+        <div class="btn btn-danger btn-sm pull-right" ng-click="ac.cancelCashout()" ng-disabled="!ac.selectedCashout">取消</div>
+        <table class="table">
+          <thead>
+          <tr>
+            <td>申请单号</td>
+            <td>申请时间</td>
+            <td>申请金额</td>
+            <td>当前状态</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="item in ac.cashoutList" ng-click="ac.selectedCashout = item.proposalId" ng-class="{'ac-cashin-selected':ac.selectedCashout == item.proposalId}">
+            <td>{{item.proposalId}}</td>
+            <td>{{item.createTime | date:'yyyy/MM/dd HH:mm'}}</td>
+            <td>{{item.data.amount|number : 2}}</td>
+            <td>审核中</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ac-cashin">
+        <span class="ac-reward-title">充值申请: </span>
+        <div class="btn btn-danger btn-sm pull-right" ng-click="ac.cancelCashin()" ng-disabled="!ac.selectedCashin">取消</div>
+        <table class="table">
+          <thead>
+          <tr>
+            <td>申请单号</td>
+            <td>申请时间</td>
+            <td>有效时间</td>
+            <td>申请金额</td>
+            <td>类型</td>
+            <td>当前状态</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="item in ac.cashinList" ng-hide="item.type == 2" ng-click="ac.selectedCashin = item.proposalId"
+              ng-class="{'ac-cashin-selected':ac.selectedCashin == item.proposalId}">
+            <td>{{item.proposalId}}</td>
+            <td>{{item.createTime | date:'yyyy/MM/dd HH:mm'}}</td>
+            <td>{{item.formattedValidTime}}</td>
+            <td>{{item.data.amount|number : 2}}</td>
+            <td>{{item.typeText}}</td>
+            <td>审核中</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer-menu name="'account'"></footer-menu>
+
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="acModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">提示</h4>
+      </div>
+      <div class="modal-body">
+        {{ac.message}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>

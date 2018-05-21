@@ -1,0 +1,19 @@
+.surveyDiv {
+  margin:0 auto !important;
+  width:50%;
+  text-align:center;
+}
+
+.surveyDiv button{
+  margin-top:10px;
+  width:100% !important;
+  text-align:center;
+  font-size:1.2em;
+}
+
+.surveyImgDiv {
+ padding-top:20px;
+ margin:0 auto !important;
+ width:50%;
+ text-align:center;
+}

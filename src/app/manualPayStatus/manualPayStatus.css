@@ -1,0 +1,70 @@
+.mw20{
+    min-height:20px;
+}
+
+.mps-bank-info{
+    /*background-color:blue;*/
+    height:200px;
+    margin-bottom:50px;
+}
+
+.mps-bgWhite{
+    background-color:white;
+}
+.mps-content{
+    margin-left:17px;
+    margin-right:17px;
+    padding-top:30px;
+    padding-bottom:30px;
+}
+.mtop10{
+    margin-top:10px;
+}
+
+.mps-sub-title{
+    padding:10px
+}
+
+.mps-blue-corner{
+    margin-top:30px;
+    min-height:30px;
+    padding-left:20px;
+    padding-right:20px;
+    color:white;
+}
+
+.mps-blue-bg{
+    background-color:#1e8feb;
+    padding-bottom:15px;
+}
+
+.mps-blue-title{
+    width:100%;
+    padding:5px 0px 0px 0px;
+    border-bottom:1px solid white;
+}
+
+.mps-blue-label{
+    display:inline-block;
+    padding:5px 0px 15px 20px;
+}
+
+.mps-blue-text{
+    display:inline-block;
+    padding-left:20px;
+}
+
+.mps-gray{
+
+    background-color:#dcdcdc !important;
+}
+
+.zIndex2{
+    z-index:2;
+}
+
+.mps-textarea{
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+}

@@ -1,0 +1,237 @@
+<div class="fk-records container-fluid">
+  <div class="fk-scrollable row">
+    <page-header title="'记录查询'" back="true" background="true" href="'#/account'"></page-header>
+    <div>
+      <ul class="recordTabs">
+        <li ng-click="recordhistory.toTab(1)" class="uLine"><a>投注记录</a></li>
+        <li ng-click="recordhistory.toTab(2)"><a>充值记录</a></li>
+        <li ng-click="recordhistory.toTab(3)"><a>提款记录</a></li>
+        <li ng-click="recordhistory.toTab(4)"><a>优惠记录</a></li>
+      </ul>
+    </div>
+    <div class="col-md-12 bgWhite p3">
+
+      <div class="bgWhite">
+        <div class="input-group queryFields" ng-if="recordhistory.tab==1">
+          <span class="input-group-addon bgBlue" id="basic-addon3">游戏大厅</span>
+          <select class="form-control bgGray text-right" ng-model="recordhistory.providerId">
+            <option value="">全部</option>
+            <option ng-repeat="provider in recordhistory.providerList" value="{{provider.providerId}}">{{provider.name}}</option>
+          </select>
+        </div>
+        <div class="input-group queryFields w100p" ng-if="recordhistory.tab==2">
+          <span class="input-group-addon bgBlue w83" id="basic-addon4">方式</span>
+          <select class="form-control w100p bgGray" ng-model="recordhistory.topUpType">
+            <option value="">全部</option>
+            <option value="1">手动存款</option>
+            <option value="2">在线充值</option>
+            <option value="3">支付宝充值</option>
+            <option value="4">个人微信</option>
+          </select>
+        </div>
+        <div class="input-group queryFields w100p" ng-if="recordhistory.tab==3">
+          <span class="input-group-addon bgBlue w83" id="basic-addon5">状态</span>
+          <select class="form-control bgGray" ng-model="recordhistory.proposalState">
+            <option ng-repeat="(key, value) in recordhistory.proposalOption" value="{{key}}">{{value}}</option>
+          </select>
+        </div>
+        <div class="input-group queryFields">
+          <span class="input-group-addon bgBlue" id="basic-addon3">起始时间</span>
+          <div class="input-group-btn w30p">
+            <input type="text" id="startDate" class="form-control">
+          </div>
+          <div class="input-group-btn w20p">
+            <select class="form-control bgGray" ng-options="item.name for item in recordhistory.hrs track by item.num" ng-model="recordhistory.csHour">
+            </select>
+          </div>
+          <div class="input-group-btn w20p">
+            <select class="form-control bgGray" ng-options="item.name for item in recordhistory.mins track by item.num" ng-model="recordhistory.csMin">
+            </select>
+          </div>
+        </div>
+        <div class="input-group queryFields">
+          <span class="input-group-addon bgBlue" id="basic-addon3">结束时间</span>
+          <div class="input-group-btn w30p">
+            <input type="text" id="endDate" class="form-control">
+          </div>
+          <div class="input-group-btn w20p">
+            <select class="form-control bgGray" ng-options="item.name for item in recordhistory.hrs track by item.num" ng-model="recordhistory.ceHour">
+            </select>
+          </div>
+          <div class="input-group-btn w20p">
+            <select class="form-control bgGray" ng-options="item.name for item in recordhistory.mins track by item.num" ng-model="recordhistory.ceMin">
+            </select>
+          </div>
+        </div>
+        <div class="ptop12">
+          <button class="btn btn-primary submitButton" ng-click="recordhistory.search(recordhistory.tab)">查询</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="qResult qResult1" ng-if="recordhistory.tab==1">总计（ 有效投注额：{{recordhistory.totalValidAmount}} ）</div>
+
+  <!-- topUpHistory -->
+  <div class="bgWhite qResult row mtop10" ng-if="recordhistory.tab==2">
+    <div>
+      <table class="table table-responsive">
+        <thead class="bgThead">
+          <tr>
+            <th>订单时间</th>
+            <th>充值类型</th>
+            <th>充值金额</th>
+            <th>状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="reward in recordhistory.topUpHistory">
+            <td>{{reward.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td>{{reward.typeText}}</td>
+            <td class="text-right pr5">{{reward.data.amount | currency:" "}}</td>
+            <td>{{reward.statusName}}</td>
+          </tr>
+          <tr ng-if="recordhistory.topUpHistoryStats.totalCount==0">
+            <td colspan="4">暂无记录</td>
+          </tr>
+          <tr>
+            <td colspan="2">当前小计</td>
+            <td colspan="1" class="text-right">{{recordhistory.topUpHistoryStats.totalAmount | currency:" "}}</td>
+            <td></td>
+          </tr>
+
+        </tbody>
+      </table>
+      <nav aria-label="...">
+        <ul class="pagination pagination-lg pagin2">
+          <li class="page-item" ng-if="recordhistory.totalTab2pg.length>0">
+            <a class="page-link" ng-click="recordhistory.tab2toPg('-1')">上一页</a>
+          </li>
+          <li class="page-item" data-current="{{n}}" ng-repeat="n in recordhistory.totalTab2pg"><a class="page-link" ng-click="recordhistory.tab2toPg(n)">{{n}}</a></li>
+          <li class="page-item" ng-if="recordhistory.totalTab2pg.length>0">
+            <a class="page-link" ng-click="recordhistory.tab2toPg('+1')">下一页</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- end of topUpHistory -->
+  <!-- bonusRequestList -->
+  <div class="bgWhite qResult row mtop10" ng-if="recordhistory.tab==3">
+    <div>
+      <table class="table table-responsive">
+        <thead class="bgThead">
+          <tr>
+            <th>订单号</th>
+            <th>提款时间</th>
+            <th>提款金额</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="bonus in recordhistory.bonusRequestList">
+            <td>{{bonus.proposalId}}</td>
+            <td>{{bonus.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td class="text-right pr5">{{bonus.data.amount | currency:" "}}</td>
+            <td>
+              {{bonus.statusName}}
+            </td>
+            <td>
+              <div ng-if="bonus.status=='Pending'">
+                <button type="button" ng-click="recordhistory.cancelRedraw(bonus.proposalId)" class="btn btn-primary" data-toggle="modal"
+                  data-target="#myModal">取消</button>
+              </div>
+            </td>
+          </tr>
+          <tr ng-if="recordhistory.bonusRequestListStats.totalCount==0">
+            <td colspan="4">暂无记录</td>
+          </tr>
+          <!--                       <tr>
+                          <td colspan="2">当前小计</td>
+                          <td colspan="1"  class="text-right">{{recordhistory.bonusRequestListStats.totalAmount}}</td>
+                          <td></td>
+                        </tr> -->
+        </tbody>
+      </table>
+      <nav aria-label="...">
+        <ul class="pagination pagination-lg pagin3">
+          <li class="page-item" ng-if="recordhistory.totalTab3pg.length > 0">
+            <a class="page-link" ng-click="recordhistory.tab3toPg('-1')">上一页</a>
+          </li>
+          <li class="page-item" data-current="{{n}}" ng-repeat="n in recordhistory.totalTab3pg"><a class="page-link" ng-click="recordhistory.tab3toPg(n)">{{n}}</a></li>
+          <li class="page-item" ng-if="recordhistory.totalTab3pg.length > 0">
+            <a class="page-link" ng-click="recordhistory.tab3toPg('+1')">下一页</a>
+          </li>
+        </ul>
+      </nav>
+
+
+    </div>
+  </div>
+  <!-- end of bonusRequestList -->
+  <!-- playerRewardList -->
+  <div class="bgWhite qResult row mtop10" ng-if="recordhistory.tab==4">
+    <div>
+      <table class="table table-responsive ptop20">
+        <thead class="bgThead">
+          <tr>
+            <th>优惠活动</th>
+            <th>时间</th>
+            <th>优惠金额</th>
+            <th>状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="reward in recordhistory.playerRewardList">
+            <td>{{reward.eventName}}</td>
+            <td>{{reward.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td class="text-right pr5">{{reward.rewardAmount | currency:" "}}</td>
+            <td>{{reward.statusName}}</td>
+          </tr>
+          <tr ng-if="recordhistory.playerRewardListStats.totalCount==0">
+            <td colspan="4">暂无记录</td>
+          </tr>
+          <tr>
+            <td colspan="2">当前小计</td>
+            <td colspan="1" class="text-right">{{recordhistory.playerRewardListStats.totalAmount | currency:" "}}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <nav aria-label="...">
+        <ul class="pagination pagination-lg pagin4">
+          <li class="page-item" ng-if="recordhistory.totalTab4pg.length > 0">
+            <a class="page-link" ng-click="recordhistory.tab4toPg('-1')">上一页</a>
+          </li>
+          <li class="page-item" data-current="{{n}}" ng-repeat="n in recordhistory.totalTab4pg"><a class="page-link" ng-click="recordhistory.tab4toPg(n)">{{n}}</a></li>
+          <li class="page-item" ng-if="recordhistory.totalTab4pg.length > 0">
+            <a class="page-link" ng-click="recordhistory.tab4toPg('+1')">下一页</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- end of playerRewardList -->
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">取消提款</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          取消此次提款？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          <button type="button" ng-model="recordhistory.cancelNo" ng-click="recordhistory.cancelBonusRequest(recordhistory.cancelNo)"
+            class="btn btn-primary">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end modal -->
+</div>

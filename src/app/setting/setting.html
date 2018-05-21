@@ -1,0 +1,38 @@
+<div class="fk-setting container-fluid">
+  <div class="fk-scrollable row">
+    <div class="fk-scrollable-content col-md-12">
+
+      <page-header background="true" back="true" title="'短信设置'" cs="false" logo="false" credit="true"></page-header>
+      <ul class="page-setting-list" ng-repeat="(i, smsGroup) in setting.smsGroups">
+        <li ng-if="smsGroup.smsParentSmsId==-1"><span class="ls-text"> {{smsGroup.smsName}} </span>
+          <span ng-class="{true:'ls-icon-off', false: 'ls-icon-on'}[setting.settings[smsGroup.smsName].isTrue]" ng-click="setting.changeButton(smsGroup.smsName)">
+          </span></li>
+      </ul>
+      <!-- <ul class="page-setting-list">
+        <li><span class="ls-text">玩家洗码（成功）</span><span class="{{setting.buttonPlayerConsumptionReturnSuccess}}" ng-click="setting.changeButton('buttonPlayerConsumptionReturnSuccess')"></span></li>
+        <li><span class="ls-text">手工存款（成功）</span><span class="{{setting.buttonManualTopupSuccess}}" ng-click="setting.changeButton('buttonManualTopupSuccess')"></span></li>
+        <li><span class="ls-text">在线充值（成功）</span><span class="{{setting.buttonOnlineTopupSuccess}}" ng-click="setting.changeButton('buttonOnlineTopupSuccess')"></span></li>
+        <li><span class="ls-text">个人支付宝（成功）</span><span class="{{setting.buttonAlipayTopupSuccess}}" ng-click="setting.changeButton('buttonAlipayTopupSuccess')"></span></li>
+        <li><span class="ls-text">个人微信（成功）</span><span class="{{setting.buttonWechatTopupSuccess}}" ng-click="setting.changeButton('buttonWechatTopupSuccess')"></span></li>
+        <li><span class="ls-text">提款（成功）</span><span class="{{setting.buttonWithdrawSuccess}}" ng-click="setting.changeButton('buttonWithdrawSuccess')"></span></li>
+        <li><span class="ls-text">提款（取消）</span><span class="{{setting.buttonWithdrawCancel}}" ng-click="setting.changeButton('buttonWithdrawCancel')"></span></li>
+        <li><span class="ls-text">秒杀礼包（成功）</span><span class="{{setting.buttonPlayerLimitedOfferRewardSuccess}}" ng-click="setting.changeButton('buttonPlayerLimitedOfferRewardSuccess')"></span></li>
+        <li><span class="ls-text">编辑玩家银行资料（成功）</span><span class="{{setting.buttonUpdateBankInfoSuccess}}" ng-click="setting.changeButton('buttonUpdateBankInfoSuccess')"></span></li>
+        <li><span class="ls-text">编辑玩家电话资料（成功）</span><span class="{{setting.buttonUpdatePhoneInfoSuccess}}" ng-click="setting.changeButton('buttonUpdatePhoneInfoSuccess')"></span></li>
+        <li><span class="ls-text">更新密码</span><span class="{{setting.buttonUpdatePassword}}" ng-click="setting.changeButton('buttonUpdatePassword')"></span></li>
+        <li><span class="ls-text">存送金（组）（成功）</span><span class="{{setting.buttonPlayerTopUpReturnGroupSuccess}}" ng-click="setting.changeButton('buttonPlayerTopUpReturnGroupSuccess')"></span></li>
+        <li><span class="ls-text">输值反利（组）（成功）</span><span class="{{setting.buttonPlayerLoseReturnRewardGroupSuccess}}" ng-click="setting.changeButton('buttonPlayerLoseReturnRewardGroupSuccess')"></span></li>
+        <li><span class="ls-text">签到全勤（组）（成功）</span><span class="{{setting.buttonPlayerConsecutiveRewardGroupSuccess}}" ng-click="setting.changeButton('buttonPlayerConsecutiveRewardGroupSuccess')"></span></li>
+        <li><span class="ls-text">投注额优惠（组）（成功）</span><span class="{{setting.buttonPlayerConsumptionRewardGroupSuccess}}" ng-click="setting.changeButton('buttonPlayerConsumptionRewardGroupSuccess')"></span></li>
+        <li><span class="ls-text">免费体验金（组）（成功）</span><span class="{{setting.buttonPlayerFreeTrialRewardGroupSuccess}}" ng-click="setting.changeButton('buttonPlayerFreeTrialRewardGroupSuccess')"></span></li>
+        <li><span class="ls-text">玩家注册意象（手动、成功）</span><span class="{{setting.buttonPlayerRegisterIntentionSuccess}}" ng-click="setting.changeButton('buttonPlayerRegisterIntentionSuccess')"></span></li>
+        <li><span class="ls-text">优惠代码（成功）</span><span class="{{setting.buttonPlayerPromoCodeRewardSuccess}}" ng-click="setting.changeButton('buttonPlayerPromoCodeRewardSuccess')"></span></li>
+        <li><span class="ls-text">玩家升级（成功）</span><span class="{{setting.buttonPlayerLevelUpMigrationSuccess}}" ng-click="setting.changeButton('buttonPlayerLevelUpMigrationSuccess')"></span></li>
+        <li><span class="ls-text">玩家降级（成功）</span><span class="{{setting.buttonPlayerLevelDownMigrationSuccess}}" ng-click="setting.changeButton('buttonPlayerLevelDownMigrationSuccess')"></span></li>
+        <li><span class="ls-text">升级优惠（成功）</span><span class="{{setting.buttonPlayerLevelUpSuccess}}" ng-click="setting.changeButton('buttonPlayerLevelUpSuccess')"></span></li>
+      </ul> -->
+    </div>
+  </div>
+
+  <footer-menu name="'account'"></footer-menu>
+</div>

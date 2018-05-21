@@ -1,0 +1,167 @@
+<div class="fk-account container-fluid">
+
+  <div class="row">
+    <div class="col-md-12" style="background-color: #ffffff">
+
+      <page-header title="'提款银行资料'" back="true" background="true" href="'#/dashboard'"></page-header>
+
+      <div class="bank-content">
+        <div class="col-md-12" style="background-color: #ffffff">
+          <div class="form-group">
+            <div class="insideText">收款人：</div>
+            <div class="col-10">
+              <input class="form-control inputText" ng-model="partnerbank.disabledBankAccountName" type="text">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="insideText">银行卡类型：</div>
+            <div class="col-10">
+              <select class="form-control inputText" ng-model="partnerbank.editData.bankAccountType">
+                <option ng-repeat="(key,val) in partnerbank.bankAccountTypeList" value="{{key}}">{{val}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="insideText">银行账号：</div>
+            <div class="col-10">
+              <input class="form-control inputText" ng-model="partnerbank.editData.bankAccount" type="text" ng-change="partnerbank.validateBankAccount()">
+            </div>
+            <div style="color:red;font-size:12px;" ng-show="partnerbank.invalidBankAccount">必须是16位或19位银行卡号</div>
+          </div>
+          <div class="form-group">
+            <div class="insideText">银行行别：</div>
+            <div class="col-10">
+              <select class="form-control inputText" ng-model="partnerbank.editData.bankType">
+                <option ng-repeat="(key, val) in partnerbank.allBankTypeList" value="{{key}}">{{val}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="insideText">开户城市:</div>
+            <div class="col-10">
+              <select class="form-control inputText" ng-change="partnerbank.selectProvince(partnerbank.editData.province)" ng-model="partnerbank.editData.province">
+                <option ng-repeat="option in partnerbank.provinces" value="{{option.id}}">{{option.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="insideText"></div>
+            <div class="col-10">
+              <select class="form-control inputText" ng-change="partnerbank.selectCity(partnerbank.editData.city)" ng-model="partnerbank.editData.city">
+                <option ng-repeat="option in partnerbank.cities" value="{{option.id}}">{{option.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="insideText"></div>
+            <div class="col-10">
+              <select class="form-control inputText" id="sel1" ng-model="partnerbank.editData.district">
+                <option ng-repeat="option in partnerbank.districts" value="{{option.id}}">{{option.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="insideText">银行网点:</div>
+            <div class="col-10">
+              <input class="form-control inputText" ng-model="partnerbank.editData.bankAddress" value="" type="text">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="insideText">验证码:</div>
+            <div class="col-6">
+              <input class="form-control inputText" type="text" name="sms" ng-model="partnerbank.editData.smsCode" placeholder="请获取验证码" required>
+            </div>
+          </div>
+          <div class="btn-get-captcha btn btn-primary" ng-click="partnerbank.getSMSCode()" ng-disabled="partnerbank.countDown > 0" style="margin-bottom: 1em">
+            <span ng-hide="partnerbank.countDown > 0">获取验证码</span>
+            <span ng-show="partnerbank.countDown > 0">{{bank.countDown}}秒后重发</span>
+          </div>
+
+        </div>
+        <button class="btn btn-primary w100" ng-click="partnerbank.updatePlayerPayment()">确认</button>
+      </div>
+      <!-- if there's data here -->
+      <div class="bgGray" style="display:none">
+        <div class="bank-content" ng-if="!partnerbank.userData.bankAccount">
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="insideText">收款人：</div>
+              <div class="col-10 ">
+                <input class="form-control inputText" disabled value="{{partnerbank.userData.bankAccountName}}" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="insideText">银行卡类型：</div>
+              <div class="col-10">
+                <input class="form-control inputText" disabled value="{{partnerbank.bankAccountTypeList[partnerbank.userData.bankAccountType]}}" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="insideText">银行账号：</div>
+              <div class="col-10">
+                <input class="form-control inputText" disabled value="{{partnerbank.userData.bankAccount}}" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="insideText">银行行别：</div>
+              <div class="col-10">
+                <input class="form-control inputText" disabled value="{{partnerbank.allBankTypeList[partnerbank.userData.bankName]}}" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="insideText">开户城市:</div>
+              <div class="col-10">
+                <input class="form-control inputText" disabled value="{{partnerbank.userData.bankAccountCity}}" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="insideText">银行网点:</div>
+              <div class="col-10">
+                <input class="form-control inputText" disabled value="{{partnerbank.userData.bankAddress}}" type="text">
+              </div>
+            </div>
+          </div>
+          <div class="btop100 bfont">温馨提示：如提款银行资料不准确，请联络客服人员确认修改。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="bankSuccessModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel1">提示</h4>
+        </div>
+        <div class="modal-body">
+          银行账户添加成功
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="bankFailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel2">提示</h4>
+        </div>
+        <div class="modal-body">
+          {{partnerbank.errorMessage}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

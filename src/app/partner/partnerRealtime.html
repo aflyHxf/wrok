@@ -1,0 +1,104 @@
+<div class="fk-records container-fluid">
+  <div class="fk-scrollable row">
+      <page-header dashboardpage="true" title="'实用佣金详情'" back="false" background="true" href="'#/account'"></page-header>
+      <div class="col-md-12 bgWhite">
+        <table class="table table-striped">
+          <tr>
+            <td width="50%">
+                 <div class="rt-insideText">开始时间:</div>
+                 <div class="col-10 input-group-btn">
+                  <input type="text" id="startDate" class="form-control qs-inputText">
+                 </div>
+            </td>
+            <td width="50%">
+                 <div class="rt-insideText">结束时间:</div>
+                 <div class="col-10 input-group-btn">
+                  <input type="text" id="endDate" class="form-control qs-inputText">
+                 </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+                 <div class="qs-insideText">每页显示:</div>
+                 <div class="qs-inputText">
+                  <select class="form-control bgGray" ng-model="partnerrealtime.pgLimit">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                  </select>
+                 </div>
+            </td>
+            <td>
+              <div class="fRight">
+                 <button class="text-right btn btn-primary" ng-click="partnerrealtime.searchTransaction(true)">查询</button>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div class="commisionHint">佣金=（下线会员负盈利-推广成本）*%</div>
+
+    </div>
+  </div>
+           <!-- topUpHistory -->
+           <div class="bgWhite qResult row mtop10">
+            <div>
+              <table class="table table-responsive">
+                <thead class="bgThead">
+                  <tr>
+                    <th>账号</th>
+                    <th>输赢值</th>
+                    <th>财务费</th>
+                    <th>平台费</th>
+                    <!-- <th>优惠</th> -->
+                    <th>总输赢</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="commission in partnerrealtime.partnerCommission.playerCommissions">
+                    <td>{{commission.playerName}}</td>
+                    <td>{{commission.totalBonusAmount}}</td>
+                    <td>{{commission.serviceFee}}</td>
+                    <td>{{commission.platformFee}}</td>
+                    <!-- <td>{{commission.playerName}}</td> -->
+                    <td>{{commission.profitAmount}}</td>
+                  </tr>
+                  <tr ng-if="partnerrealtime.partnerCommissionStats.totalCount==0">
+                    <td colspan="4">暂无记录</td>
+                  </tr>
+                  <tr>
+                    <td>页总数: </td>
+                    <td>{{partnerrealtime.subTotalBonusAmount}}</td>
+                    <td>{{partnerrealtime.subServiceFee}}</td>
+                    <td>{{partnerrealtime.subPlatformFee}}</td>
+                    <!-- <td>{{commission.playerName}}</td> -->
+                    <td>{{partnerrealtime.subProfitAmount}}</td>
+                  </tr>
+                  <tr>
+                    <td>全总数: </td>
+                    <td>{{partnerrealtime.partnerCommission.total.totalBonusAmount || 0}}</td>
+                    <td>{{partnerrealtime.partnerCommission.total.serviceFee || 0}}</td>
+                    <td>{{partnerrealtime.partnerCommission.total.platformFee || 0}}</td>
+                    <!-- <td>{{commission.playerName}}</td> -->
+                    <td>{{partnerrealtime.partnerCommission.total.profitAmount || 0}}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+              <nav aria-label="...">
+                <ul class="pagination pagination-lg pagin2">
+                  <li class="page-item" ng-if="partnerrealtime.totalPg">
+                    <a class="page-link" ng-click="partnerrealtime.tabtoPg('-1')">上一页</a>
+                  </li>
+                  <li class="page-item"  data-current="{{n}}" ng-repeat="n in partnerrealtime.totalPg">
+                    <a class="page-link" ng-click="partnerrealtime.tabtoPg(n)">{{n}}
+                    </a></li>
+                  <li class="page-item" ng-if="partnerrealtime.totalPg">
+                    <a class="page-link" ng-click="partnerrealtime.tabtoPg('+1')">下一页</a>
+                  </li>
+                  </ul>
+                </nav>
+              </div>
+          </div>
+           <!-- end of topUpHistory -->
+
+</div>

@@ -1,0 +1,100 @@
+<div class="fk-userinfo container-fluid">
+  <div class="row">
+    <page-header background="true" back="true" cs="false" logo="true" credit="true" href="'#/account'"></page-header>
+
+
+    <div class="fk-userinfo col-md-12">
+      <ul class="page-acc-list">
+        <li class="mh50"><span class="ls-dphoto">头像</span><span class="ls-dphoto-right"><img ng-src="{{user.fullPhotoUrl}}" ng-click="user.changeDisplayPic()" alt="..."
+                                                                                             class="user-avatar"></span></li>
+        <li><span class="ls-text">会员账号</span><span class="ls-text-right">{{user.userData.name}}</span></li>
+        <li><span class="ls-text">真实姓名</span><span class="ls-text-right">{{user.userData.realName}}</span></li>
+        <li><span class="ls-text">绑定电话</span><span class="ls-text-right">{{user.userData.phoneNumber}}</span></li>
+        <li><span class="ls-text">绑定信箱</span><span class="ls-text-right">{{user.userData.email}}</span></li>
+        <li><span class="ls-text">开户时间</span><span class="ls-text-right">{{user.userData.registrationTime | date:'yyyy-MM-dd HH:mm:ss' }}</span></li>
+        <li><span class="ls-text">客户ID</span><span class="ls-text-right">{{user.userData.playerId}}</span></li>
+      </ul>
+    </div>
+
+    <div class="fk-userinfo col-md-12 ptop20">
+      <ul class="page-acc-list">
+        <li><a href="#/password"><span class="ls-text">捕鱼皇账号密码</span><span class="ls-entry-right" style="padding-top:13px;">*******</span></a></li>
+        <li><a href="#/bank/user">
+          <div class="ls-text">提款银行账号</div>
+
+          <div class="ls-entry-right">
+            <div>
+              <img class="centerImg" src="/assets/images/portrait/icon_bank.jpg" height="35" width="40">
+            </div>
+            <div class="bankName">
+              <div class="user-bank-acc" ng-if="user.userData.bankAccount">
+                <div>{{::user.userBank}}
+                  尾号{{::user.userData.bankAccount}}
+                </div>
+
+              </div>
+              <div class="user-bank-acc" ng-if="!user.userData.bankAccount">添加资料</div>
+            </div>
+          </div>
+        </a></li>
+        <li><a href="#/setting"><span class="ls-text">短信设置</span><span class="ls-text-right"></span></a></li>
+      </ul>
+    </div>
+    <div class="fk-userinfo col-md-12">
+      <div class="photoList" ng-class="{true:'openPhotoList',false:'closePhotoList'}[user.changePic]">
+        <div class="row m30">
+          <div class="col-xs-3 col-md-3 userImage" ng-click="user.selectPic(1,'1.jpg')">
+            <div class="dp1"></div>
+          </div>
+          <div class="col-xs-3 col-md-3 userImage" ng-click="user.selectPic(2,'2.jpg')">
+            <div class="dp2"></div>
+          </div>
+          <div class="col-xs-3 col-md-3 userImage" ng-click="user.selectPic(3,'3.jpg')">
+            <div class="dp3"></div>
+          </div>
+          <div class="col-xs-3 col-md-3 userImage" ng-click="user.selectPic(4,'4.jpg')">
+            <div class="dp4"></div>
+          </div>
+        </div>
+        <div class="row m30">
+          <div class="col-xs-3 col-md-3 userImage" ng-click="user.selectPic(5,'5.jpg')">
+            <div class="dp5"></div>
+          </div>
+          <div class="col-xs-3 col-md-3 userImage" ng-click="user.selectPic(6,'6.jpg')">
+            <div class="dp6"></div>
+          </div>
+          <div class="col-xs-3 col-md-3 userImage" ng-click="user.selectPic(7,'7.jpg')">
+            <div class="dp7"></div>
+          </div>
+          <div class="col-xs-3 col-md-3 userImage" ng-click="user.selectPic(8,'8.jpg')">
+            <div class="dp8"></div>
+          </div>
+        </div>
+        <div class="row m30">
+          <div class="col-xs-3 col-md-3 userImage" ng-click="user.selectPic(9,'9.jpg')">
+            <div class="dp9"></div>
+          </div>
+          <div class="col-xs-3 col-md-3 userImage" ng-click="user.selectPic(10,'10.jpg')">
+            <div class="dp10"></div>
+          </div>
+          <div class="col-xs-3 col-md-3 userImage" ng-click="user.selectPic(11,'11.jpg')">
+            <div class="dp11"></div>
+          </div>
+          <div class="col-xs-3 col-md-3 userImage" ng-click="user.selectPic(12,'12.jpg')">
+            <div class="dp12"></div>
+          </div>
+        </div>
+        <div class="row m30 text-center">
+          <div class="col-xs-2 col-md-2"></div>
+          <div class="col-xs-8 col-md-8">
+            <div ng-click="user.confirmDisplayPic()" class="confirm_btn"></div>
+          </div>
+          <div class="col-xs-2 col-md-2"></div>
+
+        </div>
+      </div>
+    </div>
+    <div class="fk-userinfo col-md-12" ng-class="{true:'modalBlack',false:''}[user.changePic]">
+    </div>
+  </div>
+</div>

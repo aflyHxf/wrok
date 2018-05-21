@@ -1,0 +1,139 @@
+<div class="fk-cashInOut-center container-fluid">
+
+  <div class="fk-scrollable row" style="height:100%">
+    <div class="fk-scrollable-content col-md-12">
+      <page-header background="true" back="true" title="'申请提款'" cs="false" logo="false" credit="false" login="false" href="'#/partner'"></page-header>
+
+
+      <div>
+        <div class="cashInOut-bankAcc">
+          <span class="bank-text">银行帐号</span>
+          <div class="icon-right">
+            <div class=" bankName">
+              <img class="centerImg" src="/assets/images/portrait/icon_bank.jpg" height="30" width="50" align="right"
+                   vertical-align="center">
+            </div>
+            <div class="bankName"><a href="#/partnerbank">
+              <div ng-if="partnercashout.userData.bankName">
+                <div class="cashout-bank-acc">{{::partnercashout.userBank}} 尾号{{::partnercashout.userData.bankAccount}}</div>
+              </div>
+              <div class="accNumber lh60" ng-if="!partnercashout.userData.bankAccount">
+                添加资料{{partnercashout.userData.bankAccount}}
+              </div>
+            </a></div>
+          </div>
+        </div>
+        <div class="divider" style="height:1.5px"></div>
+        <div class="curAmount">
+          <label class="title">本地额度: <span class="amount">{{(partnercashout.partnerData.credits).toFixed(2)}}</span></label>
+        </div>
+        <form class="fk-cashOut-form" name="cashOutForm">
+          <div class="form-group">
+            <table border="0">
+              <tr>
+                <td class="td1">
+                  <label class="">提款金额:</label>
+                </td>
+                <td class="td2">
+                  <input type="number"
+                         name="cashOutAmount"
+                         ng-model="partnercashout.cashOutAmount"
+                         placeholder=""
+                         class="form-control"
+                         ng-min="100"
+                         id="cashOutAmount"
+                         ng-max="100000"
+                         required/>
+
+                  <label class="labelBottom">温馨提示： 单笔最低提款100元，单日最高提款10万元。7x24小时随时提款不限次数免费办理，星级会员提款金额无上限。</label>
+
+                  <div class="has-error"
+                       ng-messages="cashOutForm.cashOutAmount.$error"
+                       ng-if="cashOutForm.cashOutAmount.$touched">
+                    <div ng-message="required">
+                      <div class="popover fade top in" role="tooltip"
+                           style="top: -30px;left: 92px;display: block; color: #ff0000;">
+                        <div class="arrow" style="left: 50%;"></div>
+                        <h3 class="popover-title" style="display: none;"></h3>
+                        <div class="popover-content">必填</div>
+                      </div>
+                    </div>
+                    <div ng-message="max">
+                      <div class="popover fade top in" role="tooltip"
+                           style="top: -30px;left: 92px;display: block; color: #ff0000;">
+                        <div class="arrow" style="left: 50%;"></div>
+                        <h3 class="popover-title" style="display: none;"></h3>
+                        <div class="popover-content">单次提款最多10万元</div>
+                      </div>
+                    </div>
+                    <div ng-message="min">
+                      <div class="popover fade top in" role="tooltip"
+                           style="top: -30px;left: 92px;display: block; color: #ff0000;">
+                        <div class="arrow" style="left: 50%;"></div>
+                        <h3 class="popover-title" style="display: none;"></h3>
+                        <div class="popover-content">提款金额不能小于100元</div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <input type="submit"
+                   class="btn btn-primary y btn-lg btn-block"
+                   value="提交"
+                   ng-click="partnercashout.applyBonus(1)"
+                   ng-disabled="cashOutForm.$invalid"
+                   style="margin:60px 0 80px 0;"/>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- <footer-menu name="'cashinout'"></footer-menu> -->
+</div>
+<!--  Modal  -->
+<div class="modal fade"
+     id="paymentModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">提示</h4>
+      </div>
+      <div class="modal-body">
+
+        <div ng-show="partnercashout.paymentMessage">
+          <div style="text-align: center;">
+            {{partnercashout.paymentMessage}}
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel2">提示</h4>
+      </div>
+      <div class="modal-body">
+        是否立刻前往充值页面进行充值？
+      </div>
+      <div class="modal-footer">
+        <a type="button" target="_blank" ng-href="{{partnercashout.payUrl}}" class="btn btn-default">确定</a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
