@@ -38,7 +38,10 @@ export default {
   methods: {
     login () {
       if (!this.username) {
-        this.$vux.toast.text('用户名不能为空')
+        this.$confirm({
+          cancelText: '取消',
+          text: '用户名不能为空'
+        })
         return false
       }
       if (!this.password) {
