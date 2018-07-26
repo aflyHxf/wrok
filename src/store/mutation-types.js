@@ -1,14 +1,5 @@
-export const SET_STATE = 'SET_STATE'
-
-export const MSG = 'MSG'
-
-export const ALERT = 'ALERT'
-
-export const CONFIRM = 'CONFIRM'
-
-export const REGISTER= 'REGISTER'
-
-export const LOGOUT= 'LOGOUT'
+export const SET_LOADING_STATUS = 'SET_LOADING_STATUS'
 
 export const SET_USER_INFO = 'SET_USER_INFO'
 
+export const SET_EMAIL_STATUS = 'SET_EMAIL_STATUS'
