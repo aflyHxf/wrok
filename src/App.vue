@@ -4,7 +4,6 @@
     <transition name="fade" mode="out-in" appear>
       <loading></loading>
     </transition>
-    <confirm></confirm>
     <footer-bar v-if="footerShow"></footer-bar>
   </div>
 </template>
@@ -12,7 +11,6 @@
 <script>
 import FooterBar from './components/footer-bar'
 import Loading from './components/loading'
-import Confirm from './components/plugins/Confirm'
 export default {
   name: 'App',
   data () {
@@ -43,8 +41,7 @@ export default {
   },
   components: {
     FooterBar,
-    Loading,
-    Confirm
+    Loading
   }
 }
 </script>

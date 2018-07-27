@@ -12,13 +12,12 @@ const errMsg = {
 // 用户未登录处理
 function notLogin(store) {
   store.dispatch('setLogout', () => {
-    Vue.$vux({
-      content: '验证失败, 请先登录',
-      confirmText: '去登录',
-      onConfirm() {
-        tool.router.push('/login');
-      },
-      onCancel () {}
+    Vue.prototype.$confirm({
+      text: '验证失败, 请先登录',
+      cancelText: '取消',
+      confirmFun: () => {
+        tool.router.push('/');
+      }
     })
   })
 }
@@ -102,7 +101,7 @@ Socket.prototype = {
       return;
     }
     let callback = this.callback[name];
-    if(!callback.data.data._silence&&this.store){
+    if(!callback.data.data._silence){
       this.store.commit('SET_LOADING_STATUS', false)
     }
     if (callback.data.data._heartBeat) {
@@ -134,19 +133,12 @@ Socket.prototype = {
       callback.promise.resolve(respData['data']);
       delete this.callback[name];
     } else if (respData['data']['status'] !== 200 && respData['data']['status'] !== 420) {
-      if(callback.data.data._closeCONFIRM){
-        callback.promise.reject(respData['data']);
-      }else {
+      if (!callback.data.data._closeCONFIRM) {
         let errorMessage = respData['data'].errorMessage;
         if (errMsg[respData['data'].errorMessage]) {
           errorMessage = errMsg[respData['data'].errorMessage];
         }
-        Vue.$vux.confirm.show({
-          content:errorMessage,
-          showCancelButton:false,
-          onConfirm() {
-          },
-        })
+        Vue.prototype.$confirm({text: errorMessage})
         callback.promise.reject(respData['data']);
       }
       delete this.callback[name];
@@ -157,12 +149,10 @@ Socket.prototype = {
     if (!this.err) {
       this.init();
     } else {
-      const _this = this
-      Vue.$vux.confirm.show({
-        content:'网络链接超时,请确认网络通畅后重试',
-        confirmText:'重试',
-        onConfirm() {
-          _this.init();
+      Vue.prototype.$confirm({
+        text: '网络链接超时,请确认网络通畅后重试',
+        confirmFun: () => {
+          this.init();
         }
       })
     }
@@ -176,16 +166,14 @@ Socket.prototype = {
       if (this.valid) {
         this.init();
       } else {
-        const _this = this
-        Vue.$vux.confirm.show({
-          content:'网络链接超时,请确认网络通畅后重试',
-          confirmText:'重试',
-          onConfirm() {
-            _this.init();
+        Vue.prototype.$confirm({
+          text: '网络链接超时,请确认网络通畅后重试',
+          confirmFun: () => {
+            this.init();
           }
         })
       }
-      if (this.store && this.store.state.loading) {
+      if (this.store.getters.loading) {
         this.store.commit('SET_LOADING_STATUS', false)
       }
     }

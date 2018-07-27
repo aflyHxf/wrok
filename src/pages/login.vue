@@ -38,24 +38,24 @@ export default {
   methods: {
     login () {
       if (!this.username) {
-        this.$confirm({
-          cancelText: '取消',
-          text: '用户名不能为空'
-        })
+        this.$confirm({text: '用户名不能为空'})
         return false
       }
       if (!this.password) {
-        this.$vux.toast.text('密码不能为空')
-        return false
-      }
-      if (this.loginTimes > 2) {
-        this.$vux.toast.text('验证码不能为空')
+        this.$confirm({text: '密码不能为空'})
         return false
       }
       let data = {
         name: this.username,
         password: this.password,
         clientDomain: location.origin
+      }
+      if (this.loginTimes > 2) {
+        if (!this.vCode) {
+          this.$confirm({text: '验证码不能为空'})
+          return false
+        }
+        data.captcha = this.vCode
       }
       this.$api.login(data).then(res => {
         // 因为login返回的data(个人信息)和get 返回的data不一样

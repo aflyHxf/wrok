@@ -20,14 +20,13 @@ Confirm.install = (Vue) => {
  * @param {Function} confirm 确认
  */
   //  添加实例方法，以供全局调用
-  Vue.prototype.$confirm = (title, type, text, cancelText, cancel, confirm) => {
+  Vue.prototype.$confirm = (confirmParams) => {
     instance.show = true // 调用$confirm()则显示提示
-    instance.title = title
-    instance.type = type
-    instance.text = text
-    instance.cancelText = cancelText
-    instance.cancel = cancel()
-    instance.confirm = confirm()
+    instance.title = confirmParams.title ? confirmParams.title : instance.title
+    instance.type = confirmParams.type
+    instance.text = confirmParams.text
+    instance.cancelText = confirmParams.cancelText ? confirmParams.cancelText : instance.cancelText
+    instance.confirmFun = confirmParams.confirmFun
   }
 }
 

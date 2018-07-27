@@ -33,6 +33,11 @@ export default {
     cancelText: {
       type: String,
       default: ''
+    },
+    confirmFun: {
+      type: Function,
+      default: () => {
+      }
     }
   },
   computed: {
@@ -48,7 +53,7 @@ export default {
   },
   data() {
     return {
-      show: true,
+      show: false,
       animate: 'animate-up'
     }
   },
@@ -60,7 +65,12 @@ export default {
       }, 300)
     },
     confirm() {
-      console.log(123)
+      if(this.confirmFun){
+        this.show = false
+        this.confirmFun()
+      }else {
+        this.cancel()
+      }
     }
   },
   watch: {
@@ -81,6 +91,7 @@ export default {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, .3);
+    overflow: hidden;
     z-index: 9999;
     .confirm-content {
       position: absolute;
@@ -93,8 +104,8 @@ export default {
       height: 4.12rem;
       border-radius: 0.08rem;
       border: 0.02rem solid @borderColor;
-      overflow: hidden;
       background: #fff;
+      overflow: hidden;
       &.animate-down {
         animation: siderDown 0.3s linear;
         animation-fill-mode: forwards;
@@ -114,6 +125,7 @@ export default {
         padding: 0 .22rem;
         .text {
           height: 100%;
+          padding: 0.2rem;
           border-top: 0.01rem solid @borderColor;
         }
       }
